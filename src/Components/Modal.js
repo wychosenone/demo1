@@ -1,9 +1,9 @@
-function Modal(props) {
+function Modal({onDelete}) {
     function cancelHandler() {
-        props.onCancel();
+   
     }
     function confirmHandler() {
-        props.onConfirm();
+      onDelete()
     }
     return (
     <div className='modal'>
