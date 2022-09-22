@@ -3,11 +3,14 @@ import Todo from "./Components/Todo";
 import Modal from "./Components/Modal";
 
 const odata = [
-  { id: 1, text: "Learn React" },
-  { id: 2, text: "Master React" },
-  { id: 3, text: "Explore the Depth" },
-  { id: 4, text: "Yue is gonna Win" },
+  { id: 1, text: "Learn React", isCompleted: true },
+  { id: 2, text: "Master React", isCompleted: true },
+  { id: 3, text: "Explore the Depth", isCompleted: false },
+  { id: 4, text: "Yue is gonna Win", isCompleted: false },
 ];
+
+// button => onClick
+// isCompleted =>true
 
 function App() {
   //useState => val,set func
@@ -36,18 +39,28 @@ function App() {
     setIsModalOpen(false);
   };
 
+  const setItDone = (id) => {
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i].id === id) {
+        data[i].isCompleted = true;
+      }
+    }
+    setData([...data]);
+  };
+
   return (
     <div>
       <h1>My todos</h1>
-      {isModalOpen && (
-        <Modal onDelete={deleteTodo} closeModal={closeModal} />
-      )}
+      {isModalOpen && <Modal onDelete={deleteTodo} closeModal={closeModal} />}
       {data.map((item) => {
         return (
           <Todo
             text={item.text}
             key={item.id}
+            id={item.id}
             openModal={() => openModal(item.id)}
+            setItDone={setItDone}
+            isCompleted={item.isCompleted}
           />
         );
       })}

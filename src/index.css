@@ -44,6 +44,10 @@
     padding: 1rem;
     width: 20rem;
   }
+
+  .isCompleted {
+    background-color: green;
+  }
   
   .actions {
     text-align: right;
