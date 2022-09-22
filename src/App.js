@@ -16,15 +16,15 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const deleteTodo = () => {
-    const todoData = data;
-    console.log(todoData)
+    const todoData = [];
+   
     for (let i = 0; i < todoData.length; i += 1) {
-      if(todoData[i].id==1){
-        todoData[i].isDeleted=true
+      if(!todoData[i].id==1){
+        todoData.push(todoData[i])
       }
     }
     console.log(todoData)
-    setData(...todoData)
+    setData(todoData)
   };
 
 
@@ -34,11 +34,11 @@ function App() {
       <h1>My todos</h1>
       {isModalOpen && <Modal onDelete={deleteTodo} />}
       {data.map((item) => {
-        if(!item.isDeleted){
+
           return (
             <Todo text={item.text} key={item.id} openModal={()=>setIsModalOpen(true)} />
           );
-        }
+        
 
       })}
     </div>
