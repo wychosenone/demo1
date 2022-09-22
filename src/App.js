@@ -17,29 +17,28 @@ function App() {
 
   const deleteTodo = () => {
     const todoData = [];
-   
-    for (let i = 0; i < todoData.length; i += 1) {
-      if(!todoData[i].id==1){
-        todoData.push(todoData[i])
+
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i].id !== 1) {
+        todoData.push(data[i]);
       }
     }
-    console.log(todoData)
-    setData(todoData)
+    setData([...todoData]);
+    setIsModalOpen(false);
   };
-
-
 
   return (
     <div>
       <h1>My todos</h1>
       {isModalOpen && <Modal onDelete={deleteTodo} />}
       {data.map((item) => {
-
-          return (
-            <Todo text={item.text} key={item.id} openModal={()=>setIsModalOpen(true)} />
-          );
-        
-
+        return (
+          <Todo
+            text={item.text}
+            key={item.id}
+            openModal={() => setIsModalOpen(true)}
+          />
+        );
       })}
     </div>
   );
