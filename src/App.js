@@ -3,40 +3,51 @@ import Todo from "./Components/Todo";
 import Modal from "./Components/Modal";
 
 const odata = [
-  { id: 1, text: "Learn React", isDeleted: false },
-  { id: 2, text: "Master React", isDeleted: false },
-  { id: 3, text: "Explore the Depth", isDeleted: false },
-  { id: 4, text: "Yue is gonna Win", isDeleted: false },
+  { id: 1, text: "Learn React" },
+  { id: 2, text: "Master React" },
+  { id: 3, text: "Explore the Depth" },
+  { id: 4, text: "Yue is gonna Win" },
 ];
 
-//setState()
-//props.xxx setSatet()=>
 function App() {
+  //useState => val,set func
+
   const [data, setData] = useState(odata);
+  const [selectedId, setSelectedId] = useState(undefined);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const deleteTodo = () => {
-    const todoData = [];
-
     for (let i = 0; i < data.length; i += 1) {
-      if (data[i].id !== 1) {
-        todoData.push(data[i]);
+      if (data[i].id === selectedId) {
+        data.splice(i, 1);
       }
     }
-    setData([...todoData]);
+    console.log(data);
+    setData([...data]);
+    setIsModalOpen(false);
+  };
+
+  const openModal = (id) => {
+    setSelectedId(id);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
     setIsModalOpen(false);
   };
 
   return (
     <div>
       <h1>My todos</h1>
-      {isModalOpen && <Modal onDelete={deleteTodo} />}
+      {isModalOpen && (
+        <Modal onDelete={deleteTodo} closeModal={closeModal} />
+      )}
       {data.map((item) => {
         return (
           <Todo
             text={item.text}
             key={item.id}
-            openModal={() => setIsModalOpen(true)}
+            openModal={() => openModal(item.id)}
           />
         );
       })}
