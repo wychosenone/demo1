@@ -32,11 +32,10 @@ function Like(props) {
 
 }
 Like.propTypes = {
-    liked: PropTypes.bool,
+    liked: PropTypes.bool.isRequired,
     likeCount: PropTypes.number,
 }
 Like.defaultProps = {
-    liked:false,
     likeCount:0,
 }
 export default Like;

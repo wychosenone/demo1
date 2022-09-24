@@ -11,9 +11,14 @@ const odata = [
   { id: 4, text: "Yue is gonna Win", isCompleted: false },
 ];
 
-
 // button => onClick
 // isCompleted =>true
+
+//App
+//del
+//add
+
+
 
 function App() {
   //useState => val,set func
@@ -21,8 +26,6 @@ function App() {
   const [data, setData] = useState(odata);
   const [selectedId, setSelectedId] = useState(undefined);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-
 
   const deleteTodo = () => {
     for (let i = 0; i < data.length; i += 1) {
@@ -35,10 +38,17 @@ function App() {
     setIsModalOpen(false);
   };
 
-  const addCard = () => {
-    
-  }
+  const addTodo = (val) => {
+    // console.log(val)
+    // console.log(data)
+    //Create a new obj
+    //push
+    //new data arr
+    //set
 
+    const newData = { id: data.length, text: val, isCompleted: false };
+    setData([...data, newData]);
+  };
 
   const openModal = (id) => {
     setSelectedId(id);
@@ -48,45 +58,50 @@ function App() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
- 
+
   const setItDone = (id) => {
     for (let i = 0; i < data.length; i += 1) {
-      if (data[i].id === id && data[i].isCompleted===false) {
+      if (data[i].id === id && data[i].isCompleted === false) {
         data[i].isCompleted = true;
         console.log(data[i].isCompleted);
-      } else if (data[i].id === id && data[i].isCompleted===true) {
+      } else if (data[i].id === id && data[i].isCompleted === true) {
         data[i].isCompleted = false;
         console.log(data[i].isCompleted);
+      }
+
+      setData([...data]);
     }
-
-    setData([...data]);
-  }
-};
-
+  };
 
   return (
-    
-    <><><div>
-      <h1>My todos</h1>
-      {isModalOpen && <Modal onDelete={deleteTodo} closeModal={closeModal} />}
-      {data.map((item) => {
-        return (
-          <Todo
-            text={item.text}
-            key={item.id}
-            id={item.id}
-            openModal={() => openModal(item.id)}
-            setItDone={setItDone}
-            isCompleted={item.isCompleted} />
-        );
-      })}
-    </div><div>
-        <Add addCard={addCard} />
-
-      </div></><div>
-        <Like />
-      </div></>
-    
+    <>
+      <>
+        <div>
+          <h1>My todos</h1>
+          {isModalOpen && (
+            <Modal onDelete={deleteTodo} closeModal={closeModal} />
+          )}
+          {data.map((item) => {
+            return (
+              <Todo
+                text={item.text}
+                key={item.id}
+                id={item.id}
+                openModal={() => openModal(item.id)}
+                setItDone={setItDone}
+                isCompleted={item.isCompleted}
+              />
+            );
+          })}
+        </div>
+        <div>
+          <Add addNew={addTodo} />
+        </div>
+      </>
+      <div>
+        <Like liked likeCount={1}/>
+      </div>
+    </>
   );
 }
 

@@ -1,12 +1,9 @@
-function Todo({ text, openModal, isCompleted, setItDone, id}) {
+function Todo({ text, openModal, isCompleted, setItDone, id }) {
   const classForState = isCompleted ? "isCompleted" : "";
- 
 
-  const changeState = () =>{
-    setItDone(id)
-  }
-
-
+  const changeState = () => {
+    setItDone(id);
+  };
 
   return (
     <div className={`card ${classForState}`}>
@@ -15,12 +12,12 @@ function Todo({ text, openModal, isCompleted, setItDone, id}) {
         <button className="btn" onClick={() => openModal(true)}>
           Delete
         </button>
-        <button className="btn" onClick={changeState}>Done</button>
+        <button className="btn" onClick={changeState}>
+          {isCompleted ? "Undo" : "Done"}
+        </button>
       </div>
     </div>
-    
   );
 }
-
 
 export default Todo;
