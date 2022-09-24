@@ -38,19 +38,26 @@
   }
   
   .card {
+    margin-top:20px;
     background-color: white;
     border-radius: 4px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     padding: 1rem;
     width: 20rem;
   }
-
+  .addNewCard {
+    border:2px solid red;
+  }
   .isCompleted {
     background-color: green;
   }
   
   .actions {
     text-align: right;
+  }
+  .inputBar {
+    margin-top:20px;
+
   }
   
   .modal {
@@ -75,3 +82,60 @@
     top: 0;
     left: 0;
   }
+
+  .likeButton {
+    margin-top:20px;
+    --color: #1E2235;
+    --color-hover: #1E2235;
+    --color-active: #fff;
+    --icon: #BBC1E1;
+    --icon-hover: #8A91B4;
+    --icon-active: #fff;
+    --background: #fff;
+    --background-hover: #fff;
+    --background-active: #362A89;
+    --border: #E1E6F9;
+    --border-active: #362A89;
+    --shadow: #{rgba(#001177, .025)};
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    border:none;
+    background: none;
+    padding: 5px;
+    border-radius: 9px;
+    line-height: 27px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    -webkit-tap-highlight-color: transparent;
+    transition: color .2s linear;
+  }
+  .hand {
+    display:inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 2px 0 0 0;
+    background: var(--icon);
+    position: relative;
+    margin: 10px 8px 0 0;
+    transform-origin: -5px -1px;
+    transition: transform .25s, background .2s linear;
+    transform: rotate(calc(var(--hand-rotate, 0) * 1deg)) translateZ(0);
+    }
+
+  .thumb {
+        background: var(--icon);
+        width: 10px;
+        height: 4px;
+        border-radius: 2px;
+        transform-origin: 2px 2px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: transform .25s, background .2s linear;
+        transform: scale(.85) translateY(-.5px) rotate(var(--hand-thumb-1, -45deg)) translateZ(0);
+        
+    }
+

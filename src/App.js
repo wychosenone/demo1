@@ -1,13 +1,16 @@
 import { useState } from "react";
 import Todo from "./Components/Todo";
 import Modal from "./Components/Modal";
+import Add from "./Components/Add";
+import Like from "./Components/Like";
 
 const odata = [
-  { id: 1, text: "Learn React", isCompleted: true },
-  { id: 2, text: "Master React", isCompleted: true },
+  { id: 1, text: "Learn React", isCompleted: false },
+  { id: 2, text: "Master React", isCompleted: false },
   { id: 3, text: "Explore the Depth", isCompleted: false },
   { id: 4, text: "Yue is gonna Win", isCompleted: false },
 ];
+
 
 // button => onClick
 // isCompleted =>true
@@ -18,6 +21,8 @@ function App() {
   const [data, setData] = useState(odata);
   const [selectedId, setSelectedId] = useState(undefined);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+
 
   const deleteTodo = () => {
     for (let i = 0; i < data.length; i += 1) {
@@ -30,6 +35,11 @@ function App() {
     setIsModalOpen(false);
   };
 
+  const addCard = () => {
+    
+  }
+
+
   const openModal = (id) => {
     setSelectedId(id);
     setIsModalOpen(true);
@@ -38,18 +48,25 @@ function App() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+ 
   const setItDone = (id) => {
     for (let i = 0; i < data.length; i += 1) {
-      if (data[i].id === id) {
+      if (data[i].id === id && data[i].isCompleted===false) {
         data[i].isCompleted = true;
-      }
+        console.log(data[i].isCompleted);
+      } else if (data[i].id === id && data[i].isCompleted===true) {
+        data[i].isCompleted = false;
+        console.log(data[i].isCompleted);
     }
+
     setData([...data]);
-  };
+  }
+};
+
 
   return (
-    <div>
+    
+    <><><div>
       <h1>My todos</h1>
       {isModalOpen && <Modal onDelete={deleteTodo} closeModal={closeModal} />}
       {data.map((item) => {
@@ -60,11 +77,16 @@ function App() {
             id={item.id}
             openModal={() => openModal(item.id)}
             setItDone={setItDone}
-            isCompleted={item.isCompleted}
-          />
+            isCompleted={item.isCompleted} />
         );
       })}
-    </div>
+    </div><div>
+        <Add addCard={addCard} />
+
+      </div></><div>
+        <Like />
+      </div></>
+    
   );
 }
 
