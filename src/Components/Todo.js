@@ -1,4 +1,4 @@
-function Todo({ text, openModal, isCompleted, setItDone, id }) {
+function Todo({ label, openModal, isCompleted, setItDone, id }) {
   const classForState = isCompleted ? "isCompleted" : "";
 
   const changeState = () => {
@@ -7,7 +7,7 @@ function Todo({ text, openModal, isCompleted, setItDone, id }) {
 
   return (
     <div className={`card ${classForState}`}>
-      <h2>{text}</h2>
+      <h2>{label}</h2>
       <div className="actions">
         <button className="btn" onClick={() => openModal(true)}>
           Delete

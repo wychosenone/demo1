@@ -84,7 +84,7 @@ function App() {
           {data.map((item) => {
             return (
               <Todo
-                text={item.text}
+                label={item.text}
                 key={item.id}
                 id={item.id}
                 openModal={() => openModal(item.id)}
