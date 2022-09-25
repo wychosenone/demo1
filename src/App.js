@@ -111,6 +111,12 @@ function App() {
 
 
   }
+  // （⬆️ 这个版本比较粗暴）
+  // 也试过其他好几种解决方案，比如先用splice清理对应的card2里的word属性
+  // 然后放进去story里的对应object的word属性，又或者给card2里每个object都加上
+  // 一条story属性 通过加上一个包涵story展示div给ui结构并赋予状态，通过css的z-index
+  // 以及fix定位来分层展示story的div和word的div，监听卡片的onclick来调整z-index
+  // 但最后都混成一团了
 
   const addTodo = (val) => {
     // console.log(val)
