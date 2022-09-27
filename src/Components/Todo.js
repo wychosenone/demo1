@@ -6,6 +6,7 @@ function Todo({ text, openModal, isCompleted, setItDone, id }) {
   };
 
   return (
+    
     <div className={`card ${classForState}`}>
       <h2>{text}</h2>
       <div className="actions">

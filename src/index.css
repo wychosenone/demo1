@@ -1,13 +1,22 @@
 * {
     box-sizing: border-box;
   }
-  
+
+  .container {
+    display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  }
   body {
     font-family: sans-serif;
     margin: 3rem;
     background-color: #dfdfdf;
   }
-  
+  .section {
+    margin-top:40px;
+    margin-bottom:40px;
+  }
+ 
   h1, h2 {
     color: #333333;
   }
@@ -143,5 +152,17 @@
         transition: transform .25s, background .2s linear;
         transform: scale(.85) translateY(-.5px) rotate(var(--hand-thumb-1, -45deg)) translateZ(0);
         
+    }
+    .pops {
+      border:none;
+      
+    }
+    .pagebutton {
+      color:green;
+      display:inline;
+    }
+    .optionpage {
+      display: inline-block;
+      margin-right: 20px;
     }
 

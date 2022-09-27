@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState} from "react";
 import Todo from "./Components/Todo";
 import Modal from "./Components/Modal";
 import Add from "./Components/Add";
 import Like from "./Components/Like";
 import CardSwitch from "./Components/CardSwitch";
+import Popup from "./Components/Popup";
+import PageSwitch from "./Components/PageSwitch";
 
+const pop = [
+  {id:1,text:"Go to React Web",value:1},
+  {id:2,text:"aaron",value:3},
+  {id:3,text:"44",value:10},
+
+]
 const odata = [
   { id: 1, text: "Learn React", isCompleted: false },
   { id: 2, text: "Master React", isCompleted: false },
@@ -49,37 +57,37 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
 
-  
   const cardSwitch = (ord) => {
     if (ord===true) {
       if (i<cardi.length && i>=1) {
         setI(i+1);
         setCard2(cardi.slice(i,i+1));
-        console.log(card2);
-        console.log(i);
-        console.log(ord);
+        // console.log(card2);
+        // console.log(i);
+        // console.log(ord);
     }  
     else if (i>=cardi.length) {
           setCard2(cardk);
-          console.log(card2);
-          console.log(i);
-          console.log(ord);
+          // console.log(card2);
+          // console.log(i);
+          // console.log(ord);
 
     }
   } else if (ord===false) {
       if (i<=1) {
         setCard2(cardj);
-        console.log(card2);
-        console.log(i);
-        console.log(ord);
+        // console.log(card2);
+        // console.log(i);
+        // console.log(ord);
 
 
     } else if (i<=cardi.length && i>1) {
         setI(i-1);
         setCard2(cardi.slice(i-2,i-1));
-        console.log(card2);
-        console.log(i);
-        console.log(ord);
+        // console.log(card2);
+        // console.log(i);
+        // console.log(ord);
+        
       
     }
   }
@@ -116,7 +124,7 @@ function App() {
   // 然后放进去story里的对应object的word属性，又或者给card2里每个object都加上
   // 一条story属性 通过加上一个包涵story展示div给ui结构并赋予状态，通过css的z-index
   // 以及fix定位来分层展示story的div和word的div，监听卡片的onclick来调整z-index
-  // 但最后都混成一团了
+  // 
 
   const addTodo = (val) => {
     // console.log(val)
@@ -154,16 +162,20 @@ function App() {
       setData([...data]);
     }
   };
+  function goNextWeb() {
+    window.location.href="https://reactjs.org/docs/state-and-lifecycle.html";
+  }
   
 
   return (
-    <><>
+    <><><><>
       <>
-        <div>
-          <h1>My todos</h1>
+        <div className="section">
+          <h1>Card Actions:</h1>
           {isModalOpen && (
             <Modal onDelete={deleteTodo} closeModal={closeModal} />
           )}
+          <div className="container">
           {data.map((item) => {
             return (
               <Todo
@@ -175,29 +187,50 @@ function App() {
                 isCompleted={item.isCompleted} />
             );
           })}
+          </div>
+       
         </div>
-        <div>
+        <div className="section">
+          <h1>Input bar && Add New:</h1>
           <Add addNew={addTodo} />
         </div>
       </>
-      <div>
-        <Like liked likeCount={1} />
+      <div className="section">
+        <h1>LikeButton && Likes:</h1>
+        <Like liked likeCount={7} />
       </div>
-    </><div>
-    {card2.map((cards) => {
-  return (
-    <CardSwitch
-      words={cards.words}
-      key={cards.id}
-      id={cards.id}
-      switchCard={cardSwitch}
-      openS={storyOpen}
-      closeS={storyClose}
-      
-       />
-  );
-})} 
+    </><div className="section">
+      <h1>SwitchCards:</h1>
+        {card2.map((cards) => {
+          return (
+            <CardSwitch
+              words={cards.words}
+              key={cards.id}
+              id={cards.id}
+              switchCard={cardSwitch}
+              openS={storyOpen}
+              closeS={storyClose} />
+          );
+        })}
+
+      </div></><div className="section">
+        <h1>Dataflow Traing:</h1>
+        {pop.slice(0,1).map((text) => {
+          return (
+            <Popup text={text}
+              key={text.id} 
+              redirect={goNextWeb}/>
+          );
+
+        })}
+
         
+      </div></><div className="section">
+        <h1>UseEffect && UseState: </h1>
+        <PageSwitch />
+        
+        
+
       </div></>
   );
 }
