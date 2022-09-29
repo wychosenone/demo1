@@ -6,6 +6,10 @@ import Like from "./Components/Like";
 import CardSwitch from "./Components/CardSwitch";
 import Popup from "./Components/Popup";
 import PageSwitch from "./Components/PageSwitch";
+import TempCov from "./Components/TempCov";
+import NewPageSwitch from "./Components/NewPageSwitch";
+
+
 
 const pop = [
   {id:1,text:"Go to React Web",value:1},
@@ -57,6 +61,8 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
 
+
+  //方法1:用返回的boolean状态来翻页
   const cardSwitch = (ord) => {
     if (ord===true) {
       if (i<cardi.length && i>=1) {
@@ -95,7 +101,8 @@ function App() {
 
     
   }
-
+  //方法2: 用返回的页面状态绑定onclick => math.max(1,page-1)
+  //                                  math.min(card总数，page+1)
 
 
   const deleteTodo = () => {
@@ -119,12 +126,7 @@ function App() {
 
 
   }
-  // （⬆️ 这个版本比较粗暴）
-  // 也试过其他好几种解决方案，比如先用splice清理对应的card2里的word属性
-  // 然后放进去story里的对应object的word属性，又或者给card2里每个object都加上
-  // 一条story属性 通过加上一个包涵story展示div给ui结构并赋予状态，通过css的z-index
-  // 以及fix定位来分层展示story的div和word的div，监听卡片的onclick来调整z-index
-  // 
+  
 
   const addTodo = (val) => {
     // console.log(val)
@@ -176,11 +178,11 @@ function App() {
             <Modal onDelete={deleteTodo} closeModal={closeModal} />
           )}
           <div className="container">
-          {data.map((item) => {
+          {data.map((item,index) => {
             return (
               <Todo
                 text={item.text}
-                key={item.id}
+                key={index}
                 id={item.id}
                 openModal={() => openModal(item.id)}
                 setItDone={setItDone}
@@ -192,7 +194,8 @@ function App() {
         </div>
         <div className="section">
           <h1>Input bar && Add New:</h1>
-          <Add addNew={addTodo} />
+          <Add addNew={addTodo}
+          />
         </div>
       </>
       <div className="section">
@@ -213,7 +216,10 @@ function App() {
           );
         })}
 
-      </div></><div className="section">
+      </div><div>
+          <h1>SwitchCards 2nd: </h1>
+          <NewPageSwitch />
+          </div></><div className="section">
         <h1>Dataflow Traing:</h1>
         {pop.slice(0,1).map((text) => {
           return (
@@ -231,7 +237,11 @@ function App() {
         
         
 
-      </div></>
+      </div><div>
+        <h1>Input Traing: </h1>
+        <TempCov />
+        </div>
+        </>
   );
 }
   

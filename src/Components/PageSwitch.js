@@ -35,7 +35,7 @@ function PageSwitch() {
         <div>
             <ul>
                 {issues.map(issue => {
-                    return (<li>{issue.title}</li>)
+                    return (<li key={issue.id}>{issue.title}</li>)
                 })
                 }
             </ul>

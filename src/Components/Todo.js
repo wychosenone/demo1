@@ -8,7 +8,7 @@ function Todo({ text, openModal, isCompleted, setItDone, id }) {
   return (
     
     <div className={`card ${classForState}`}>
-      <h2>{text}</h2>
+      <h2 className="word">{text}</h2>
       <div className="actions">
         <button className="btn" onClick={() => openModal(true)}>
           Delete
