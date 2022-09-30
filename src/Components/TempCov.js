@@ -1,19 +1,21 @@
 import {useState} from 'react';
 
 function TempCov() {
-    const [temp,setTemp] = useState("");
+    const [cel,setCel] = useState("");
+    const [fah,setFah] = useState("");
     const [boil, setBoil] = useState("");
 
-    const inputTemp = (e) => {
-        setTemp(e.target.value);
-        
-    }
-    const returnTemp = () => {
-        if (temp >= 100) {
+   
+    
+    const returnCel = () => {
+        if (cel >= 100) {
             setBoil("Boiled")
         } else {
             setBoil("Not Boiled")
         }
+    }
+    const toFah = () => {
+        setFah((cel * 9 /5) + 32)
     }
 
     return (
@@ -23,15 +25,16 @@ function TempCov() {
         type="number"
         id="temp"
         name="temp"
-        onChange={inputTemp}
-        value={temp}
+        onChange={(e)=> {setCel(e.target.value);}}
+        value={cel}
         />
         <input 
         type="submit" 
         value="Check" 
-        onClick={returnTemp} 
+        onClick={returnCel} 
         />
-        <h4>The input temperature is :{temp}, 
+        <button onClick={()=> {toFah()}}>toFah</button>
+        <h4>The input temperature to cel is :{cel}, to Fah is :{fah}, 
         and it is {boil} </h4>
 
 
